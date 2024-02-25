@@ -10,7 +10,7 @@ body{
     background: rgb(70, 68, 68);
 }
 
-.card{
+.app{
     background: #fff;
     width: 90%;
     max-width: 600px;
@@ -20,7 +20,7 @@ body{
 }
 
 
-.card h1 {
+.app h1 {
     font-size: 25px;
     color: cadetblue;
     font-weight: 600;
@@ -57,7 +57,7 @@ body{
     
 }
 
-#nextBtn {
+#next-btn {
     background: #182433;
     color: #ffffff;
     font-weight: 700;

@@ -1,7 +1,10 @@
-"use strict";
 
+// Array of questions and their respective answers
+// Each question is an object with a 'q' property for the question and an 'ans' property for the answers
+// The 'ans' property is an array of objects, each representing an answer with a 'text' property for the answer text and a 'correct' property for whether the answer is correct
 const ques = [
 
+    // First question
     {
         q: "What is the capital of Bangladesh?",
         ans: [
@@ -12,6 +15,7 @@ const ques = [
             
         ]
     },
+    // Second question
     {
         q: "What is the national flower of Bangladesh?",
         ans: [
@@ -22,6 +26,7 @@ const ques = [
             
         ]
     },
+    // Third question
     {
         q: "Which river is known as the lifeline of Bangladesh?",
         ans: [
@@ -32,6 +37,7 @@ const ques = [
             
         ]
     },
+    // Fourth question
     {
         q: "What is the main religion in Bangladesh?",
         ans: [
@@ -42,6 +48,7 @@ const ques = [
             
         ]
     },
+    // Fifth question
     {
         q: "When did Bangladesh gain independence?",
         ans: [
@@ -56,9 +63,39 @@ const ques = [
 
 ];
 
-const quesElement = document.getElementById("ques");
-const ansBtn = document.getElementById("ansBtns");
-const nextBtn = document.getElementById("nextBtn");
+// Get the question element by its id
+const quesElement = document.getElementById("question");
+const ansBtn = document.getElementById("answer-buttons");
+// Get the next button by its id
+const nextBtn = document.getElementById("next-btn");
 
 let currentQuestionIndex = 0;
+let score = 0;
 
+function showQuestion(){
+
+    let currentQuestion = ques[currentQuestionIndex];
+    let quesNo = currentQuestionIndex + 1;
+
+    quesElement.innerHTML = quesNo + ". " + currentQuestion.q;
+    
+    currentQuestion.ans.forEach(a => {
+        const button = document.querySelector(".btn");
+        button.innerHTML = a.text;
+        button.classList.add("btn");
+        ansBtn.appendChild(button);
+        
+    });
+};
+
+function startQuiz(){
+    currentQuestionIndex = 0;
+    score = 0;
+    nextBtn.innerHTML = "Next";
+    showQuestion();
+};
+
+
+
+
+startQuiz();
