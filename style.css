@@ -71,3 +71,13 @@ body{
     display: none;
     
 }
+
+
+.correct {
+    background: lightgreen;
+    color: #000000;
+}
+.incorrect {
+    background: rgb(255, 114, 114);
+    color: #ffffff;
+}
