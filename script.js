@@ -61,7 +61,7 @@ const quiz2 = [
         ans: [
             { text: "Cricket", correct: false },
             { text: "Football", correct: false },
-            { text: "Kabaddi", correct: true },
+            { text: "Ha-du-du", correct: true },
             { text: "Hockey", correct: false }
         ]
     },
@@ -1073,7 +1073,7 @@ const setOfQues = [
 function randomNumGen(){
 
     const randomNum = Math.floor(Math.random() * 20);
-    console.log(randomNum);
+    // console.log(randomNum);
     return randomNum;
 };
 
@@ -1168,6 +1168,7 @@ function showScore() {
     resetState();
     quesElement.innerHTML = `You scored ${score} out of ${ques.length}!`;
 
+    
     nextBtn.innerHTML = "Play Again";
     nextBtn.style.display = "block";
 
