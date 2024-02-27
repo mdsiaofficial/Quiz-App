@@ -1,4 +1,7 @@
 
+
+
+
 // Array of questions and their respective answers
 // Each question is an object with a 'q' property for the question and an 'ans' property for the answers
 // The 'ans' property is an array of objects, each representing an answer with a 'text' property for the answer text and a 'correct' property for whether the answer is correct
@@ -20,7 +23,7 @@ const ques = [
         q: "What is the national flower of Bangladesh?",
         ans: [
             {text: "Rose", correct: false},
-            {text: "Lily", correct: true},
+            {text: "Lily", correct: false},
             {text: "Water Lily", correct: true},
             {text: "Marigold", correct: false},
             
@@ -31,7 +34,7 @@ const ques = [
         q: "Which river is known as the lifeline of Bangladesh?",
         ans: [
             {text: "Brahmaputra River", correct: false},
-            {text: "Ganges River", correct: true},
+            {text: "Ganges River", correct: false},
             {text: "Meghna River", correct: false},
             {text: "Padma River", correct: true},
             
@@ -42,7 +45,7 @@ const ques = [
         q: "What is the main religion in Bangladesh?",
         ans: [
             {text: "Hinduism", correct: false},
-            {text: "Buddhism", correct: true},
+            {text: "Buddhism", correct: false},
             {text: "Islam", correct: true},
             {text: "Christianity", correct: false},
             
@@ -53,7 +56,7 @@ const ques = [
         q: "When did Bangladesh gain independence?",
         ans: [
             {text: "1947", correct: false},
-            {text: "1952", correct: true},
+            {text: "1952", correct: false},
             {text: "1971", correct: true},
             {text: "1980", correct: false},
             
@@ -80,15 +83,25 @@ let score = 0;
 // If the answer option is correct, a 'correct' dataset is added to the button.
 // An event listener is added to each button, which calls the 'selectAns' function when the button is clicked.
 
+
+
+function startQuiz(){
+    currentQuestionIndex = 0;
+    score = 0;
+    nextBtn.innerHTML = "Next";
+    showQuestion();
+};
+
 function showQuestion(){
 
+    resetState();
     let currentQuestion = ques[currentQuestionIndex];
     let quesNo = currentQuestionIndex + 1;
 
     quesElement.innerHTML = quesNo + ". " + currentQuestion.q;
     
     currentQuestion.ans.forEach(a => {
-        const button = document.querySelector(".btn");
+        const button = document.createElement("button");
         button.innerHTML = a.text;
         button.classList.add("btn");
         ansBtn.appendChild(button);
@@ -96,16 +109,9 @@ function showQuestion(){
         if(a.correct){
             button.dataset.correct = a.correct;
         }
-        button.addEventListener("click", selectAns)
+        button.addEventListener("click", selectAns);
         
     });
-};
-
-function startQuiz(){
-    currentQuestionIndex = 0;
-    score = 0;
-    nextBtn.innerHTML = "Next";
-    showQuestion();
 };
 
 function resetState(){
@@ -122,6 +128,7 @@ function selectAns(e){
 
     if(isCorrect){
         selectedBtn.classList.add("correct");
+        score++;
     }else{
         selectedBtn.classList.add("incorrect");
 
@@ -137,5 +144,36 @@ function selectAns(e){
 
     nextBtn.style.display = "block";
 
-}
+};
+
+function showScore(){
+
+    resetState();
+    quesElement.innerHTML= `You scored ${score} out of ${ques.length}!`;
+
+    nextBtn.innerHTML = "Play Again";
+    nextBtn.style.display = "block";
+
+};
+
+function handleNextButton(){
+    currentQuestionIndex++;
+    if(currentQuestionIndex<ques.length){
+        showQuestion();
+    }else{
+        showScore();
+    }
+};
+
+
+nextBtn.addEventListener("click", function(){
+    if(currentQuestionIndex<ques.length){
+        handleNextButton();
+    }else{
+        startQuiz();
+    }
+});
+
+
+
 startQuiz();
