@@ -72,6 +72,14 @@ const nextBtn = document.getElementById("next-btn");
 let currentQuestionIndex = 0;
 let score = 0;
 
+// The showQuestion function is used to display the current question and its corresponding answer options.
+// It first gets the current question from the 'ques' array using the 'currentQuestionIndex'.
+// It then sets the 'quesElement' innerHTML to the current question number and the question text.
+// It then iterates over the answer options of the current question and creates a button for each option.
+// The button text is set to the answer option text and a class of 'btn' is added to each button.
+// If the answer option is correct, a 'correct' dataset is added to the button.
+// An event listener is added to each button, which calls the 'selectAns' function when the button is clicked.
+
 function showQuestion(){
 
     let currentQuestion = ques[currentQuestionIndex];
